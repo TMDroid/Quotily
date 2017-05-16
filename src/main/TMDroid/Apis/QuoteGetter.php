@@ -11,6 +11,8 @@ abstract class QuoteGetter
     protected $API_KEY = "";
     protected $guzzleClient = null;
 
+    protected $needsApiKey = false;
+
     public function __construct()
     {
         $this->guzzleClient = new Client();
@@ -25,23 +27,23 @@ abstract class QuoteGetter
     }
 
     /**
-     * Checks if an API_KEY is set
-     * @throws \ErrorException
-     */
-    private function checkAPIKey()
-    {
-        if (empty($this->API_KEY)) {
-            throw new \ErrorException("You need to set the key before calling the API");
-        }
-    }
-
-    /**
      * @param $number - number of quotes to return
      * @return //{$number} of quotes from the selected service
      */
     public function getMultipleQuotes($number)
     {
         $this->checkAPIKey();
+    }
+
+    /**
+     * Checks if an API_KEY is set
+     * @throws \ErrorException
+     */
+    private function checkAPIKey()
+    {
+        if ($this->needsApiKey && empty($this->API_KEY)) {
+            throw new \ErrorException("You need to set the key before calling the API");
+        }
     }
 
     /**

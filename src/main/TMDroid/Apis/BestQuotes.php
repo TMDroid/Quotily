@@ -14,18 +14,7 @@ class BestQuotes extends QuoteGetter
         $this->SERVICE_NAME = "Bestquotes - Mashape";
         $this->URL = "https://qvoca-bestquotes-v1.p.mashape.com/quote";
         $this->API_KEY = $key;
-    }
-
-    public function getMultipleQuotes($number)
-    {
-        parent::getMultipleQuotes($number);
-
-        $array = [];
-        for ($i = 0; $i < $number; $i++) {
-            array_push($array, $this->getOneQuote());
-        }
-
-        return $array;
+        $this->needsApiKey = true;
     }
 
     public function getOneQuote()
@@ -45,7 +34,7 @@ class BestQuotes extends QuoteGetter
             $quote = new Quote();
             $quote->setServiceName($this->SERVICE_NAME)
                 ->setAuthor($object->author)
-                ->setGenre($object->genre)
+                ->setCategory($object->genre)
                 ->setLength($object->message_len)
                 ->setQuote($object->message);
 
@@ -55,5 +44,19 @@ class BestQuotes extends QuoteGetter
             throw new \HttpException("Bad request code received from server: " . $response->getStatusCode());
         }
     }
+
+    public function getMultipleQuotes($number)
+    {
+        parent::getMultipleQuotes($number);
+
+        $array = [];
+        for ($i = 0; $i < $number; $i++) {
+            array_push($array, $this->getOneQuote());
+        }
+
+        return $array;
+    }
+
+
 
 }

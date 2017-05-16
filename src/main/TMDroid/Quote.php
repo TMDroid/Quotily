@@ -9,7 +9,8 @@ class Quote
     private $author;
 //    private $id;
     private $length;
-    private $genre;
+    private $category;
+    private $extra;
 
     function __construct()
     {
@@ -90,20 +91,40 @@ class Quote
     /**
      * @return mixed
      */
-    public function getGenre()
+    public function getCategory()
     {
-        return $this->genre;
+        return $this->category;
     }
 
     /**
-     * @param mixed $genre
+     * @param mixed $category
      * @return Quote
      */
-    public function setGenre($genre)
+    public function setCategory($category)
     {
-        $this->genre = $genre;
+        $this->category = $category;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * @param mixed $extra
+     * @return Quote
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+        return $this;
+    }
+
+
 
 
 }

@@ -3,6 +3,7 @@
 namespace TMDroid;
 
 use TMDroid\Apis\BestQuotes;
+use TMDroid\Apis\QuotesOnDesign;
 use TMDroid\Apis\RandomFamousQuotes;
 use TMDroid\Apis\Supported;
 
@@ -17,11 +18,14 @@ class Quotily {
      */
     function __construct($api_id = 1, $apikey = '') {
         switch ($api_id) {
-            case Supported::$BEST_QUOTES:
+            case Supported::$API_BEST_QUOTES:
                 $this->api = new BestQuotes($apikey);
                 break;
-            case Supported::$RANDOM_FAMOUS_QUOTES:
+            case Supported::$API_RANDOM_FAMOUS_QUOTES:
                 $this->api = new RandomFamousQuotes($apikey);
+                break;
+            case Supported::$API_QUOTES_ON_DESIGN:
+                $this->api = new QuotesOnDesign();
                 break;
 
             default:
