@@ -1,5 +1,5 @@
 {
-  "name": "TMDroid/Quotily",
+  "name": "tmdroid/quotily",
   "description": "A package to retrieve quotes from the \\\"Bestquotes\\\" Mashape API",
   "type": "library",
   "require": {
