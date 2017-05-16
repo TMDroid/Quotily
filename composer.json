@@ -1,5 +1,5 @@
 {
-  "name": "csanonymus/quote-getter",
+  "name": "TMDroid/Quotily",
   "description": "A package to retrieve quotes from the \\\"Bestquotes\\\" Mashape API",
   "type": "library",
   "require": {
