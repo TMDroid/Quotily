@@ -8,17 +8,21 @@ APIs Supported:
 
 * Random Famous Quotes - [click](https://market.mashape.com/andruxnet/random-famous-quotes)
 * Bestquotes - [click](https://market.mashape.com/qvoca/bestquotes)
-* * *
+
 Usage
 ---
 
 ```php
 <?php
-use TMDroid\Quotily;  
+
+require_once __DIR__ . '/../../vendor/autoload.php'; // Autoload files using Composer autoload
+
+use TMDroid\Apis\Supported;
+use TMDroid\Quotily;
 
 $apikey = "<YOUR_API_KEY_HERE>";
 
-$quotily = new Quotily(Quotily::$API_RANDOM_FAMOUS_QUOTES, $apikey);
+$quotily = new Quotily(Supported::$BEST_QUOTES, $apikey);
 $quote = $quotily->getOneQuote();
 
 var_dump($quote);
