@@ -6,8 +6,8 @@ Quotily is a PHP package that helps you get famous quotes from various quote-ser
 APIs Supported: 
 ---
 
-* Random Famous Quotes - [click](https://market.mashape.com/andruxnet/random-famous-quotes)
-* Bestquotes - [click](https://market.mashape.com/qvoca/bestquotes)
+* Random Famous Quotes - <a href="https://market.mashape.com/andruxnet/random-famous-quotes" target="_blank">click</a>
+* Bestquotes - <a href="https://market.mashape.com/qvoca/bestquotes" target="_blank">click</a>
 
 Usage
 ---
