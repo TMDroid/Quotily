@@ -7,7 +7,7 @@ use TMDroid\Quotily;
 
 $apikey = "<YOUR_API_KEY_HERE>";
 
-$quotily = new Quotily(Supported::$API_QUOTES_ON_DESIGN, $apikey);
+$quotily = new Quotily(Supported::$API_PROGRAMMING_QUOTES, $apikey);
 $quote = $quotily->getOneQuote();
 
 var_dump($quote);

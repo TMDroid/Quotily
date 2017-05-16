@@ -1,31 +1,33 @@
 <?php
 
-namespace TMDroid\Apis;
+namespace TMDroid\Apis\Extenders;
 
+use TMDroid\Apis\QuoteGetter;
 use TMDroid\Quote;
 
-class QuotesOnDesign extends QuoteGetter {
-    public function __construct($key = '')
+class ProgrammingQuotesAPI extends QuoteGetter
+{
+
+    public function __construct()
     {
         parent::__construct();
 
-        $this->SERVICE_NAME = "Quotes on Design";
-        $this->URL = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=";
-        $this->API_KEY = $key;
+        $this->SERVICE_NAME = "Programming Quotes API";
+        $this->URL = "http://quotes.stormconsultancy.co.uk/";
     }
 
     public function getOneQuote()
     {
         parent::getOneQuote();
 
-        $response = $this->guzzleClient->request('GET', $this->URL . '1', [
+        $response = $this->guzzleClient->request('GET', $this->URL . 'random.json', [
             'headers' => [
                 'Accept' => 'application/json'
             ]
         ]);
 
         if ($response->getStatusCode() == 200) {
-            $object = \GuzzleHttp\json_decode($response->getBody())[0];
+            $object = \GuzzleHttp\json_decode($response->getBody());
 
             $quote = $this->getQuoteFromObject($object);
 
@@ -40,7 +42,7 @@ class QuotesOnDesign extends QuoteGetter {
     {
         parent::getMultipleQuotes($number);
 
-        $response = $this->guzzleClient->request('GET', $this->URL . $number, [
+        $response = $this->guzzleClient->request('GET', $this->URL . 'quotes.json', [
             'headers' => [
                 'Accept' => 'application/json'
             ]
@@ -48,9 +50,13 @@ class QuotesOnDesign extends QuoteGetter {
 
         if ($response->getStatusCode() == 200) {
             $objects = \GuzzleHttp\json_decode($response->getBody());
-            $array = [];
+            shuffle($objects);
+//            $keys = array_keys($objects);
 
-            foreach ($objects as $object) {
+            $array = [];
+            for ($i = 0; $i < $number ; $i++) {
+                $object = array_pop($objects);
+
                 $quote = $this->getQuoteFromObject($object);
 
                 array_push($array, $quote);
@@ -67,19 +73,15 @@ class QuotesOnDesign extends QuoteGetter {
      * @param $object - raw json object
      * @return Quote
      */
-    private function getQuoteFromObject($object) {
-        $object->content = str_replace('<p>', '', $object->content);
-        $object->content = trim(str_replace('</p>', '', $object->content));
-        $object->content = str_replace('&#8217;', '', $object->content);
-        $object->content = str_replace('&#8211;', '', $object->content);
-
+    private function getQuoteFromObject($object)
+    {
         $quote = new Quote();
         $quote->setServiceName($this->SERVICE_NAME)
-            ->setAuthor($object->title)
-            ->setCategory('')
-            ->setLength(strlen($object->content))
-            ->setQuote($object->content)
-            ->setExtra($object->link);
+            ->setAuthor($object->author)
+            ->setCategory('programming')
+            ->setLength($object->id)
+            ->setQuote($object->quote)
+            ->setExtra($object->permalink);
 
         return $quote;
     }

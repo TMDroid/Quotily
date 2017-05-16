@@ -9,6 +9,7 @@ APIs Supported:
 * Random Famous Quotes - <a href="https://market.mashape.com/andruxnet/random-famous-quotes" target="_blank">click</a>
 * Bestquotes - <a href="https://market.mashape.com/qvoca/bestquotes" target="_blank">click</a>
 * Quotes on Design - <a href="https://quotesondesign.com/" target="_blank">click</a>
+* Programming Quotes API - <a href="http://quotes.stormconsultancy.co.uk/api" target="_blank">click</a>
 
 Usage
 ---

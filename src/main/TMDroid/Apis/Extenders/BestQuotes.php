@@ -1,7 +1,8 @@
 <?php
 
-namespace TMDroid\Apis;
+namespace TMDroid\Apis\Extenders;
 
+use TMDroid\Apis\QuoteGetter;
 use TMDroid\Quote;
 
 class BestQuotes extends QuoteGetter

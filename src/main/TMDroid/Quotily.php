@@ -2,9 +2,10 @@
 
 namespace TMDroid;
 
-use TMDroid\Apis\BestQuotes;
-use TMDroid\Apis\QuotesOnDesign;
-use TMDroid\Apis\RandomFamousQuotes;
+use TMDroid\Apis\Extenders\BestQuotes;
+use TMDroid\Apis\Extenders\ProgrammingQuotesAPI;
+use TMDroid\Apis\Extenders\QuotesOnDesign;
+use TMDroid\Apis\Extenders\RandomFamousQuotes;
 use TMDroid\Apis\Supported;
 
 class Quotily {
@@ -26,6 +27,9 @@ class Quotily {
                 break;
             case Supported::$API_QUOTES_ON_DESIGN:
                 $this->api = new QuotesOnDesign();
+                break;
+            case Supported::$API_PROGRAMMING_QUOTES:
+                $this->api = new ProgrammingQuotesAPI();
                 break;
 
             default:
